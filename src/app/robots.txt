@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /admin-login/
+Disallow: /admin/dashboard/
+Disallow: /admin/create/
+Disallow: /admin/news/
+Disallow: /adimn/
+Disallow: /auth/
+Disallow: /auth/login/
+Disallow: /auth/signup/
+
+Sitemap: https://www.phoenixtoken.community/sitemap.xml

@@ -23,8 +23,8 @@ export const Footer = () => {
         <h2 className="uppercase text-lg md:text-xl font-bold pb-4">
           Utilities
         </h2>
-        <a href="https://tracker.phoenixtoken.community" className="block mb-2 text-sm md:text-lg uppercase hover:underline">FireScreener</a>
-        <a href="https://resurgencefoundation.org" className="block mb-2 text-sm md:text-lg uppercase hover:underline">Resurgence Foundation</a>
+        <a href="https://firescreener.com" className="block mb-2 text-sm md:text-lg uppercase hover:underline">FireScreener</a>
+        <a href="https://www.resurgencefoundation.org" className="block mb-2 text-sm md:text-lg uppercase hover:underline">Resurgence Foundation</a>
         <a href="#" className="block mb-2 text-sm md:text-lg uppercase hover:underline">Agent Pyronix</a>
         <a href="#" className="block mb-2 text-sm md:text-lg uppercase hover:underline">Phoenix Swap</a>
       </div>

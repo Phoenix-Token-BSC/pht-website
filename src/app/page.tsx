@@ -1,13 +1,15 @@
 "use client"
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Image from "next/image";
 import { DivOrigami } from "@/components/Partners";
-import { FaFire, FaCoins, FaBullhorn, FaWater, FaGift } from "react-icons/fa";
+import { FaFire, FaCoins, FaBullhorn, FaWater, FaGift, FaCalendarAlt, FaUser } from "react-icons/fa";
 
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { FiCopy } from "react-icons/fi";
+import { NewsService, NewsArticle } from "@/services/news.service";
 
 
 export default function Home() {
@@ -21,6 +23,24 @@ export default function Home() {
   // Carousel state for 'OUR PRODUCTS' section
   const [activeSlide, setActiveSlide] = React.useState(0);
   const carouselRef = React.useRef<HTMLDivElement>(null);
+
+  // News state
+  const [blogs, setBlogs] = useState<NewsArticle[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const allBlogs = await NewsService.getPublished();
+        setBlogs(allBlogs.slice(0, 4));
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
   // Scroll to slide when indicator is clicked
   const scrollToSlide = (idx: number) => {
@@ -108,10 +128,12 @@ export default function Home() {
           <div className="px-4 md:px-12 py-8 md:py-8 border border-orange-500 rounded-xl p-4">
             <h1 className="text-4xl md:text-5xl text-orange-500 font-bold text-center mb-8">ABOUT PHOENIX TOKEN</h1>
             <p className="text-md md:text-lg text-center text-neutral-300">
-              We believe that everyone deserves a chance to benefit from the advancements in digital finance
-              and blockchain technology. Our vision is to create a level playing field where every individual,
-              regardless of their background or experience, can participate in and benefit from the growth
-              of the digital economy.</p>
+              Phoenix Token was born from the idea that crypto should belong to everyone,
+              not just whales and insiders. We rise from the ashes stronger every time.
+              We combine unbreakable community resilience, meaningful charity work, and
+              relentless product development to create something different:
+              <span className="block text-orange-500 font-bold text-xl">THE ORDINARY MAN'S TOKEN</span>
+            </p>
           </div>
         </section>
 
@@ -122,7 +144,7 @@ export default function Home() {
               <Image src="/images/burn-pht.jpg" alt="first image" width={500} height={500} className="rounded-2xl" />
               <p className="flex flex-col text-neutral-900">
                 <span className="text-2xl font-bold">BURN</span>
-                <span className="text-md">COMPLETED</span>
+                <span className="text-md">HAPPENS EVERYTIME</span>
               </p>
             </div>
             <div className="flex flex-col gap-2 bg-neutral-300 border border-orange-500 p-2 rounded-2xl">
@@ -228,7 +250,7 @@ export default function Home() {
               <a href="https://dexscreener.com/bsc/0x8a2328b2c8e6a6f56668a0e26081efc250a8d6c0">
                 <div className="flex gap-2 items-center aspect-square justify-center">
                   <Image src="/images/dexscreener-b.png" width={40} height={40} alt="dexscreener" />
-          
+
                 </div>
               </a>
             </div>
@@ -249,7 +271,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="products" className="min-h-screen flex flex-col w-full max-w-full overflow-x-hidden px-4 md:px-16 py-4 md:py-16 lg:py-24">
+        <section id="products" className="min-h-screen bg-black/25 flex flex-col w-full max-w-full overflow-x-hidden px-4 md:px-16 py-4 md:py-16 lg:py-24">
           <div className="flex-1 flex flex-col justify-center items-center w-full max-w-full">
             {/* Main Content (Heading + Carousel) */}
             <div className="flex flex-col w-full max-w-full h-full">
@@ -579,6 +601,78 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="blog" className="py-16 md:py-24 px-4 md:px-16 bg-[#0a0000] relative overflow-hidden">
+          <div className="relative z-10 max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 mb-4 tracking-wider uppercase">
+                Blog & News
+              </h1>
+              <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
+            </div>
+
+            {loading ? (
+              <div className="flex justify-center items-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+              </div>
+            ) : blogs.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                {blogs.map((blog) => (
+                  <Link
+                    key={blog.id}
+                    href={`/blog/${blog.slug}`}
+                    className="group flex flex-col bg-neutral-900/50 backdrop-blur-xl border border-orange-500/20 rounded-2xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-2"
+                  >
+                    <div className="aspect-[16/9] relative overflow-hidden">
+                      <Image
+                        src={blog.imageUrl || "/images/website_pfp.png"}
+                        alt={blog.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute top-2 left-2 bg-orange-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">
+                        {blog.category || "News"}
+                      </div>
+                    </div>
+                    <div className="p-5 flex-1 flex flex-col">
+                      <div className="flex items-center gap-4 text-neutral-400 text-[10px] mb-3">
+                        <span className="flex items-center gap-1">
+                          <FaCalendarAlt className="text-orange-500" />
+                          {new Date(blog.publishedAt).toLocaleDateString()}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <FaUser className="text-orange-500" />
+                          {blog.author.name || "Admin"}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-orange-400 transition-colors">
+                        {blog.title}
+                      </h3>
+                      <p className="text-neutral-400 text-xs line-clamp-3 mb-4 flex-1">
+                        {blog.excerpt}
+                      </p>
+                      <span className="text-orange-500 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
+                        Read More <span>→</span>
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-neutral-400">No articles found.</p>
+              </div>
+            )}
+
+            <div className="text-center">
+              <Link
+                href="/blog"
+                className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-orange-600 to-red-600 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-all text-sm uppercase tracking-widest"
+              >
+                View More News
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* brand assets section */}
         <section className="py-16 md:py-24 px-4 md:px-16 bg-white text-black relative overflow-hidden">
@@ -703,8 +797,8 @@ export default function Home() {
               {/* FAQ Item 1 */}
               <div className={`transition-all duration-300 ${openFAQ === 0 ? 'transform scale-[1.02]' : ''}`}>
                 <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 0
-                    ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
-                    : 'border-orange-500/20 hover:border-orange-500/40'
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
                   }`}>
                   <button
                     onClick={() => toggleFAQ(0)}
@@ -713,15 +807,15 @@ export default function Home() {
                   >
                     <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">What is Phoenix Token (PHT)?</h3>
                     <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 0
-                        ? 'bg-orange-500/40 rotate-45'
-                        : 'hover:bg-orange-500/30'
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
                       }`}>
                       <span className="text-orange-500 text-xl font-bold">+</span>
                     </div>
                   </button>
                   <div className={`transition-all duration-300 ease-in-out ${openFAQ === 0
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0'
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                     <div className="px-6 md:px-8 pb-6 md:pb-8">
                       <div className="border-t border-orange-500/20 pt-6">
@@ -737,8 +831,8 @@ export default function Home() {
               {/* FAQ Item 2 */}
               <div className={`transition-all duration-300 ${openFAQ === 1 ? 'transform scale-[1.02]' : ''}`}>
                 <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 1
-                    ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
-                    : 'border-orange-500/20 hover:border-orange-500/40'
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
                   }`}>
                   <button
                     onClick={() => toggleFAQ(1)}
@@ -747,15 +841,15 @@ export default function Home() {
                   >
                     <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">How can I buy Phoenix Token?</h3>
                     <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 1
-                        ? 'bg-orange-500/40 rotate-45'
-                        : 'hover:bg-orange-500/30'
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
                       }`}>
                       <span className="text-orange-500 text-xl font-bold">+</span>
                     </div>
                   </button>
                   <div className={`transition-all duration-300 ease-in-out ${openFAQ === 1
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0'
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                     <div className="px-6 md:px-8 pb-6 md:pb-8">
                       <div className="border-t border-orange-500/20 pt-6">
@@ -772,8 +866,8 @@ export default function Home() {
               {/* FAQ Item 3 */}
               <div className={`transition-all duration-300 ${openFAQ === 2 ? 'transform scale-[1.02]' : ''}`}>
                 <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 2
-                    ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
-                    : 'border-orange-500/20 hover:border-orange-500/40'
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
                   }`}>
                   <button
                     onClick={() => toggleFAQ(2)}
@@ -782,15 +876,15 @@ export default function Home() {
                   >
                     <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">What is the total supply of PHT?</h3>
                     <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 2
-                        ? 'bg-orange-500/40 rotate-45'
-                        : 'hover:bg-orange-500/30'
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
                       }`}>
                       <span className="text-orange-500 text-xl font-bold">+</span>
                     </div>
                   </button>
                   <div className={`transition-all duration-300 ease-in-out ${openFAQ === 2
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0'
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                     <div className="px-6 md:px-8 pb-6 md:pb-8">
                       <div className="border-t border-orange-500/20 pt-6">
@@ -806,8 +900,8 @@ export default function Home() {
 
               <div className={`transition-all duration-300 ${openFAQ === 3 ? 'transform scale-[1.02]' : ''}`}>
                 <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 3
-                    ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
-                    : 'border-orange-500/20 hover:border-orange-500/40'
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
                   }`}>
                   <button
                     onClick={() => toggleFAQ(3)}
@@ -816,15 +910,15 @@ export default function Home() {
                   >
                     <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">Why are we pushing for Artificial Intelligence?</h3>
                     <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 3
-                        ? 'bg-orange-500/40 rotate-45'
-                        : 'hover:bg-orange-500/30'
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
                       }`}>
                       <span className="text-orange-500 text-xl font-bold">+</span>
                     </div>
                   </button>
                   <div className={`transition-all duration-300 ease-in-out ${openFAQ === 3
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0'
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                     <div className="px-6 md:px-8 pb-6 md:pb-8">
                       <div className="border-t border-orange-500/20 pt-6">
@@ -840,29 +934,111 @@ export default function Home() {
                 </div>
               </div>
 
-
-              {/* FAQ Item 4 */}
+               {/* FAQ Item 4 */}
               <div className={`transition-all duration-300 ${openFAQ === 4 ? 'transform scale-[1.02]' : ''}`}>
                 <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 4
-                    ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
-                    : 'border-orange-500/20 hover:border-orange-500/40'
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
                   }`}>
                   <button
                     onClick={() => toggleFAQ(4)}
                     className={`w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between transition-all duration-300 ${openFAQ === 4 ? 'bg-orange-500/10' : 'hover:bg-orange-500/5'
                       }`}
                   >
-                    <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">What makes Phoenix Token different?</h3>
+                    <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">What do I earn for holding PHT?</h3>
                     <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 4
-                        ? 'bg-orange-500/40 rotate-45'
-                        : 'hover:bg-orange-500/30'
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
                       }`}>
                       <span className="text-orange-500 text-xl font-bold">+</span>
                     </div>
                   </button>
                   <div className={`transition-all duration-300 ease-in-out ${openFAQ === 4
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0'
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
+                    } overflow-hidden`}>
+                    <div className="px-6 md:px-8 pb-6 md:pb-8">
+                      <div className="border-t border-orange-500/20 pt-6">
+                        <p className="text-sm text-neutral-300 leading-relaxed">
+                          You get rewarded in WikiCat Coin (WKC) for holding PHT. The more you hold, the more WKC you earn.
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+               {/* FAQ Item 4 */}
+              <div className={`transition-all duration-300 ${openFAQ === 5 ? 'transform scale-[1.02]' : ''}`}>
+                <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 4
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
+                  }`}>
+                  <button
+                    onClick={() => toggleFAQ(5)}
+                    className={`w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between transition-all duration-300 ${openFAQ === 5 ? 'bg-orange-500/10' : 'hover:bg-orange-500/5'
+                      }`}
+                  >
+                    <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">What is the tax distribution?</h3>
+                    <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 4
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
+                      }`}>
+                      <span className="text-orange-500 text-xl font-bold">+</span>
+                    </div>
+                  </button>
+                  <div className={`transition-all duration-300 ease-in-out ${openFAQ === 5
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
+                    } overflow-hidden`}>
+                    <div className="px-6 md:px-8 pb-6 md:pb-8">
+                      <div className="border-t border-orange-500/20 pt-6">
+                        <p className="text-sm text-neutral-300 leading-relaxed">
+                          The tax distribution is as follows:
+                          <ul>
+                            <li>
+                              - 2% WikiCat Coin (WKC)
+                            </li>
+                            <li>
+                              - 1% Marketing
+                            </li>
+                            <li>
+                              - 1% Liquidity
+                            </li>
+                            <li>
+                              - 1% Buyback and Burn
+                            </li>
+                          </ul>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              {/* FAQ Item 4 */}
+              <div className={`transition-all duration-300 ${openFAQ === 6 ? 'transform scale-[1.02]' : ''}`}>
+                <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 4
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
+                  }`}>
+                  <button
+                    onClick={() => toggleFAQ(6)}
+                    className={`w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between transition-all duration-300 ${openFAQ === 4 ? 'bg-orange-500/10' : 'hover:bg-orange-500/5'
+                      }`}
+                  >
+                    <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">What makes Phoenix Token different?</h3>
+                    <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 4
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
+                      }`}>
+                      <span className="text-orange-500 text-xl font-bold">+</span>
+                    </div>
+                  </button>
+                  <div className={`transition-all duration-300 ease-in-out ${openFAQ === 6
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                     <div className="px-6 md:px-8 pb-6 md:pb-8">
                       <div className="border-t border-orange-500/20 pt-6">
@@ -877,32 +1053,32 @@ export default function Home() {
               </div>
 
               {/* FAQ Item 5 */}
-              <div className={`transition-all duration-300 ${openFAQ === 6 ? 'transform scale-[1.02]' : ''}`}>
+              <div className={`transition-all duration-300 ${openFAQ === 7 ? 'transform scale-[1.02]' : ''}`}>
                 <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 5
-                    ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
-                    : 'border-orange-500/20 hover:border-orange-500/40'
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
                   }`}>
                   <button
-                    onClick={() => toggleFAQ(5)}
-                    className={`w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between transition-all duration-300 ${openFAQ === 5 ? 'bg-orange-500/10' : 'hover:bg-orange-500/5'
+                    onClick={() => toggleFAQ(7)}
+                    className={`w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between transition-all duration-300 ${openFAQ === 6 ? 'bg-orange-500/10' : 'hover:bg-orange-500/5'
                       }`}
                   >
                     <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">How can I stay updated with Phoenix Token?</h3>
-                    <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 5
-                        ? 'bg-orange-500/40 rotate-45'
-                        : 'hover:bg-orange-500/30'
+                    <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 7
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
                       }`}>
                       <span className="text-orange-500 text-xl font-bold">+</span>
                     </div>
                   </button>
-                  <div className={`transition-all duration-300 ease-in-out ${openFAQ === 5
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0'
+                  <div className={`transition-all duration-300 ease-in-out ${openFAQ === 7
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                     <div className="px-6 md:px-8 pb-6 md:pb-8">
                       <div className="border-t border-orange-500/20 pt-6">
                         <p className="text-sm text-neutral-300 leading-relaxed">
-                          Follow our official social media channels, join our community Discord/Telegram, and subscribe to our newsletter.
+                          Follow our official social media channels, join our community on Telegram, and follow us on X (formerly Twitter).
                           We regularly share updates about new features, partnerships, roadmap progress, and important announcements across all our platforms.
                         </p>
                       </div>
@@ -911,27 +1087,27 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className={`transition-all duration-300 ${openFAQ === 6 ? 'transform scale-[1.02]' : ''}`}>
+              <div className={`transition-all duration-300 ${openFAQ === 7 ? 'transform scale-[1.02]' : ''}`}>
                 <div className={`bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border rounded-2xl overflow-hidden transition-all duration-300 ${openFAQ === 6
-                    ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
-                    : 'border-orange-500/20 hover:border-orange-500/40'
+                  ? 'border-orange-500/60 shadow-lg shadow-orange-500/20'
+                  : 'border-orange-500/20 hover:border-orange-500/40'
                   }`}>
                   <button
-                    onClick={() => toggleFAQ(6)}
-                    className={`w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between transition-all duration-300 ${openFAQ === 6 ? 'bg-orange-500/10' : 'hover:bg-orange-500/5'
+                    onClick={() => toggleFAQ(8)}
+                    className={`w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between transition-all duration-300 ${openFAQ === 8 ? 'bg-orange-500/10' : 'hover:bg-orange-500/5'
                       }`}
                   >
                     <h3 className="text-sm md:text-lg font-bold text-orange-400 pr-4">How can I contribute to the growth of the project?</h3>
-                    <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 6
-                        ? 'bg-orange-500/40 rotate-45'
-                        : 'hover:bg-orange-500/30'
+                    <div className={`flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center transition-all duration-300 ${openFAQ === 8
+                      ? 'bg-orange-500/40 rotate-45'
+                      : 'hover:bg-orange-500/30'
                       }`}>
                       <span className="text-orange-500 text-xl font-bold">+</span>
                     </div>
                   </button>
-                  <div className={`transition-all duration-300 ease-in-out ${openFAQ === 6
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0'
+                  <div className={`transition-all duration-300 ease-in-out ${openFAQ === 8
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                     <div className="px-6 md:px-8 pb-6 md:pb-8">
                       <div className="border-t border-orange-500/20 pt-6">

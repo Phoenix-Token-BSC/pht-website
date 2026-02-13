@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface NavItem {
   label: string;
@@ -44,9 +45,9 @@ const Header: React.FC = () => {
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
                 <div className="flex items-center space-x-2">
-                  <div className="w-10 h-10 flex items-center justify-center">
+                  <Link href="/" className="w-10 h-10 flex items-center justify-center">
                     <Image src="/images/logo_new_blank.png" alt="logo image" width={50} height={50} />
-                  </div>
+                  </Link>
                 </div>
               </motion.div>
             ))}

@@ -1,0 +1,51 @@
+About Phoenix Token (PHT)
+Phoenix Token was born from the idea that crypto should belong to everyone,
+not just whales and insiders. We rise from the ashes stronger every time.
+We combine unbreakable community resilience, meaningful charity work, and
+relentless product development to create something different: THE ORDINARY MAN'S Token
+
+Tokenomics:
+Total supply: 100,000,000 PHT
+Circulatory Supply: 6,600,000 PHT
+Initial Burnt Supply: 1,000,000 PHT
+
+Tax details:
+Buy Tax: 5%
+Sell Tax: 5%
+
+2% goes for rewards in WikiCat Coin ($WKC)
+1% goes for marketing
+1% goes for charity
+1% goes for liquidity
+
+Founder: DpatientBull (popularly known by the community on X as @Dpatient_Bull)
+
+Utilities:
+- FireScreener (https://firescreener.com)
+- FireScreener Agent (https://x.com/ai_firescreener)
+
+Charity arm: Resurgence Foundation
+    About: Our mission is to extend a helping hand to those in need during times of disaster, providing immediate relief and long-term recovery. We work tirelessly to restore dignity, hope, and opportunities to affected individuals and communities.
+    Beyond disaster relief, we are passionate about closing the digital divide in Africa, ensuring that underserved communities have access to technology and education that can transform lives and unlock new possibilities. By leveraging innovation, collaboration, and compassion, we aim to build a world where every person has the tools and support they need to thrive—no matter their circumstances.
+    Projects:
+    - First Donation Event: City of Refuge Foundation (Dec. 20, 2024)
+    - Second Donation Event: OOLG Nursery & Primary School I (Oct. 14, 2025)
+    - Third Donation Event: OOLG Nursery & Primary School II (Nov., 2025)
+
+PHT website: https://phoenixtoken.community
+Blog url: https://phoenixtoken.community/blog
+Whitepaper: https://phoenixtoken.community/asset/whitepaper.pdf
+Contract Address: 0x885c99a787BE6b41cbf964174C771A9f7ec48e04
+
+Partners:
+- WikiCat Coin (WKC), https://x.com/WikiCatCoin
+- Defi Tiger Token (DTG), https://x.com/DefiTigerToken
+- Yukan Token (YUKAN), https://x.com/YukanTokenNew
+- Ocicat Token (OCICAT), https://x.com/OcicatCoin
+- Nene Token (NENE), https://x.com/nenebsc
+- BTCDragon Token(BTCDRAGON), https://x.com/BTCDragonToken
+- Tiwi Ecosystem (TWC), https://x.com/TiwiEcosystem
+- Bengal Cat Token (BENGCAT) - https://x.com/BengalCatToken
+- AntDrop - https://x.com/AntDrop
+
+

@@ -18,32 +18,38 @@ export const DivOrigami = () => {
         <h1 className="text-5xl text-center md:text-7xl font-bold text-orange-500 mb-8">OUR PARTNERS</h1>
       <LogoRolodex
         items={[
-          <LogoItem key={1} className="bg-neutral-800 text-neutral-900">
+          <LogoItem key={1} className="bg-black text-neutral-900">
             <Image src="/images/token-logos/wkc.png" alt="wikicat coin" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
-          <LogoItem key={2} className="bg-green-300 text-neutral-900">
+          <LogoItem key={2} className="bg-black text-neutral-900">
             <Image src="/images/token-logos/dtg.jpg" alt="defi tiger token" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
-          <LogoItem key={3} className="bg-blue-300 text-neutral-900">
+          <LogoItem key={3} className="bg-black text-neutral-900">
             <Image src="/images/token-logos/war.png" alt="water rabbit token" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
-          <LogoItem key={4} className="bg-white text-black">
+          <LogoItem key={4} className="bg-black text-black">
            <Image src="/images/token-logos/ocicat.png" alt="ocicat token" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
-          <LogoItem key={5} className="bg-purple-300 text-neutral-900">
+          <LogoItem key={5} className="bg-black text-neutral-900">
             <Image src="/images/token-logos/yukan.png" alt="yukan token" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
-          <LogoItem key={6} className="bg-purple-300 text-neutral-900">
+          <LogoItem key={6} className="bg-black text-neutral-900">
             <Image src="/images/token-logos/nene.png" alt="nene token" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
-          <LogoItem key={7} className="bg-purple-300 text-neutral-900">
+          <LogoItem key={7} className="bg-black text-neutral-900">
             <Image src="/images/token-logos/btcdragon.png" alt="btcragon token" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
-          <LogoItem key={8} className="bg-purple-300 text-neutral-900">
+          <LogoItem key={8} className="bg-black text-neutral-900">
             <Image src="/images/token-logos/twc.jpg" alt="tiwi ecosystem" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
-          <LogoItem key={8} className="bg-purple-300 text-neutral-900">
+          <LogoItem key={8} className="bg-black text-neutral-900">
             <Image src="/images/token-logos/bengcat.webp" alt="tiwi ecosystem" width={300} height={300} className="w-full h-full" />
+          </LogoItem>,
+          <LogoItem key={9} className="bg-black text-neutral-900">
+            <Image src="/images/luminous-partner.jpg" alt="tiwi ecosystem" width={300} height={300} className="w-full h-full" />
+          </LogoItem>,
+          <LogoItem key={10} className="bg-black text-neutral-900">
+            <Image src="/images/zuba-partner.png" alt="tiwi ecosystem" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
         ]}
       />

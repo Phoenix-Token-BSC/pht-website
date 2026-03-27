@@ -24,8 +24,8 @@ const fuzzyBubbles = Fuzzy_Bubbles({
 
 
 export const metadata: Metadata = {
-  title: "Phoenix Token",
-  description: "THE ORDINARY MAN'S TOKEN",
+  title: "Phoenix Token - THE ORDINARY MAN'S TOKEN",
+  description: "The one token meant for anyone and everyone. Community of AI Front-Runners, Meme Culture amd Empowering Individuals and Community through Charity",
 };
 
 export default function RootLayout({

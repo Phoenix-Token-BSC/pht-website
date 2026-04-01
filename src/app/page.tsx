@@ -124,7 +124,7 @@ export default function Home() {
       <main className="relative">
         <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
           {/* Background Text */}
-          <div className="absolute inset-0 flex items-center justify-center z-0">
+          <div className="absolute inset-0 flex items-start pt-48 justify-center z-0">
             <h2 className="text-center font-bold opacity-5 select-none pointer-events-none whitespace-nowrap text-slate-200 leading-none">
               <span className="block text-[20vw] xs:text-[18vw] sm:text-[16vw] md:text-[14vw] lg:text-[12vw] xl:text-[10vw] 2xl:text-[8vw]">
                 THE ORDINARY
@@ -141,12 +141,12 @@ export default function Home() {
             <div className="relative flex justify-center">
               <div className="relative flex flex-col items-center">
                 <Image
-                  src="/images/website_pfp.png"
+                  src="/images/landing-meme.png"
                   alt="DogeMOB Character"
-                  width={1600}
-                  height={1600}
+                  width={2000}
+                  height={2000}
                   priority
-                  className="h-[60vh] md:h-[60vh] w-auto object-bottom drop-shadow-2xl"
+                  className="h-[70vh] md:h-[70vh] w-auto object-bottom drop-shadow-2xl"
                 />
                 <div className="absolute bottom-0  mb-16 flex items-center justify-center">
                   <a
@@ -206,7 +206,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="flex flex-col gap-2 bg-neutral-300 border border-orange-500 p-2 rounded-2xl">
               <Image
-                src="/images/burn-pht.jpg"
+                src="/images/burn.png"
                 alt="first image"
                 width={500}
                 height={500}
@@ -219,7 +219,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-2 bg-neutral-300 border border-orange-500 p-2 rounded-2xl">
               <Image
-                src="/images/renounce-pht.jpg"
+                src="/images/ownership.png"
                 alt="first image"
                 width={500}
                 height={500}
@@ -232,7 +232,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-2 bg-neutral-300 border border-orange-500 p-2 rounded-2xl">
               <Image
-                src="/images/locked-pht.jpg"
+                src="/images/lp-lock.png"
                 alt="first image"
                 width={500}
                 height={500}

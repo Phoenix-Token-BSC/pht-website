@@ -1,11 +1,13 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
-export async function GET(request: NextRequest) {
-  // Clear the session cookie preventing the redirect loop
+export async function GET() {
+  // Clear the session cookie
   (await cookies()).delete("session");
-  
-  // Redirect to login page
-  return NextResponse.redirect(new URL("/admin-login", request.url));
+
+  // Return a simple JSON response instead of redirecting.
+  // The AuthContext calls this via fetch() and handles navigation
+  // client-side — a server-side redirect here was contributing to
+  // the 304 redirect loop.
+  return NextResponse.json({ ok: true });
 }

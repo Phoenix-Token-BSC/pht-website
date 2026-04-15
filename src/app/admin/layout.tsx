@@ -42,6 +42,10 @@ export default async function AdminLayout({
 
   } catch (error) {
     console.error("Admin verification failed", error);
-    redirect("/api/clear-session");
+    // Clear the stale cookie directly instead of redirecting through
+    // /api/clear-session (which itself redirects to /admin-login,
+    // creating an extra 304 hop in the redirect chain).
+    (await cookies()).delete("session");
+    redirect("/admin-login");
   }
 }

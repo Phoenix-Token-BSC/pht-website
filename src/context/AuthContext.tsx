@@ -74,11 +74,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = async () => {
     try {
+      // Sign out of Firebase first
       await firebaseSignOut(auth);
-      // Call server route to strictly clear the cookie
+      // Clear the server-side session cookie
       await fetch("/api/clear-session");
+      // Immediately clear local user state so the login page
+      // doesn't see a stale `user` and try to redirect back
+      setUser(null);
       toast.success("Signed out");
-      router.push("/admin-login");
+      // Use replace to prevent back-button triggering the dashboard
+      router.replace("/admin-login");
     } catch (error) {
       console.error("Logout failed", error);
     }

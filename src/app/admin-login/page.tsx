@@ -1,24 +1,39 @@
 "use client";
 
 import { useAuth } from "@/context/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const { user, signInWithGoogle, loading } = useAuth();
   const router = useRouter();
+  const [redirecting, setRedirecting] = useState(false);
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    if (user && !loading) {
-      router.push("/admin/dashboard");
+  useEffect(() => {
+    // Only redirect if user is authenticated AND auth is no longer loading.
+    // We verify server-side access first before blindly redirecting to the
+    // dashboard, which prevents the redirect loop where the server-side
+    // layout rejects the session and bounces back here.
+    if (user && !loading && !redirecting) {
+      setRedirecting(true);
+
+      // Verify the session is valid server-side before redirecting
+      fetch("/api/verify-session")
+        .then((res) => {
+          if (res.ok) {
+            router.replace("/admin/dashboard");
+          } else {
+            // Server rejected the session – stay on login page
+            setRedirecting(false);
+          }
+        })
+        .catch(() => {
+          setRedirecting(false);
+        });
     }
-  }, 400);
+  }, [user, loading, router, redirecting]);
 
-  return () => clearTimeout(timer);
-}, [user, loading, router]);
-
-  if (loading) {
+  if (loading || redirecting) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
@@ -34,7 +49,7 @@ useEffect(() => {
              <span className="text-2xl">⚡</span>
           </div>
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Zuva Admin Portal
+            PHT Admin Portal
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             For authorized personnel only.
@@ -71,7 +86,7 @@ useEffect(() => {
         </div>
 
         <div className="mt-6 text-center text-xs text-gray-500">
-           Protected by Google Cloud Identity & Cloud Firestore.
+           Protected by Google Cloud Identity &amp; Cloud Firestore.
         </div>
       </div>
     </div>

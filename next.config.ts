@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
         source: '/:path*',
         has: [{ type: 'host', value: 'phoenixtoken.community' }],
         destination: 'https://www.phoenixtoken.community/:path*',
-        permanent: true, // 301 redirect
+        permanent: true,
       },
     ]
   },

@@ -252,6 +252,7 @@ export default function Home() {
   const [blogs, setBlogs] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -557,7 +558,7 @@ export default function Home() {
                       <div className="absolute inset-0 bg-white rounded-3xl pointer-events-none" />
 
                       {/* Mobile: Image and Title */}
-                      <div className="flex items-center gap-3 mb-3 md:hidden relative z-10 w-full">
+                      <div aria-hidden="false" className="flex items-center gap-3 mb-3 md:hidden relative z-10 w-full">
                         {product.image && (
                           <div className="rounded-xl flex items-center justify-center flex-shrink-0">
                             <Image
@@ -576,7 +577,7 @@ export default function Home() {
 
                       {/* Desktop: Product Logo */}
                       {product.image && (
-                        <div className="hidden md:flex rounded-xl items-center justify-center relative z-10 md:w-1/3 md:min-w-[140px] md:max-w-[180px] lg:max-w-[200px] flex-shrink-0">
+                        <div aria-hidden="true" className="hidden md:flex rounded-xl items-center justify-center relative z-10 md:w-1/3 md:min-w-[140px] md:max-w-[180px] lg:max-w-[200px] flex-shrink-0">
                           <Image
                             src={product.image}
                             alt={product.imageAlt || product.name}
@@ -686,11 +687,11 @@ export default function Home() {
                   <div key={phase.number} className={`relative ${isLast ? "" : "mb-16 md:mb-24"}`}>
                     <div className="flex flex-col md:flex-row items-center">
                       {/* Mobile Node */}
-                      <div className="absolute left-4 transform -translate-x-1/2 w-6 h-6 bg-orange-500 rounded-full border-4 border-neutral-900 shadow-lg shadow-orange-500/50 md:hidden animate-pulse"></div>
+                      <div aria-hidden="false" className="absolute left-4 transform -translate-x-1/2 w-6 h-6 bg-orange-500 rounded-full border-4 border-neutral-900 shadow-lg shadow-orange-500/50 md:hidden animate-pulse"></div>
 
                       {/* Left Spacer (Desktop) - for right-side phases */}
                       {phase.side === "right" && (
-                        <div className="hidden md:block md:w-1/2"></div>
+                        <div aria-hidden="false" className="hidden md:block md:w-1/2"></div>
                       )}
 
                       {/* Desktop Center Node */}

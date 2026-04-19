@@ -18,6 +18,16 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'phoenixtoken.community' }],
+        destination: 'https://www.phoenixtoken.community/:path*',
+        permanent: true, // 301 redirect
+      },
+    ]
+  },
 
   /* config options here */
 };

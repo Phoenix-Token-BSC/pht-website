@@ -28,6 +28,9 @@ const fuzzyBubbles = Fuzzy_Bubbles({
 export const metadata: Metadata = {
   title: "Phoenix Token - THE ORDINARY MAN'S TOKEN | FIRST TRUE AI MEME TOKEN | CHARITY & LOVE",
   description: "Phoenix Token was born from the idea that crypto should belong to everyone, not just whales and insiders. We rise from the ashes stronger every time. We combine unbreakable community resilience, meaningful charity work, and relentless product development to create something different: THE ORDINARY MAN'S TOKEN",
+   alternates: {
+    canonical: 'https://www.phoenixtoken.community',
+  },
 };
 
 export default function RootLayout({

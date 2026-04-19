@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Header from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaSearch, FaCalendarAlt, FaUser, FaTag, FaArrowRight, FaSpinner } from "react-icons/fa";
@@ -46,7 +44,7 @@ export default function BlogPage() {
 
     return (
         <div className="min-h-screen bg-[#250000] text-white selection:bg-orange-500 selection:text-white">
-            <Header />
+           
 
             <main className="pt-24 pb-16 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
                 {/* Hero Section */}
@@ -240,7 +238,7 @@ export default function BlogPage() {
 
             </main>
 
-            <Footer />
+           
         </div>
     );
 }

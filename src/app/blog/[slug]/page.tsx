@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Header from "@/components/Header";
-import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
@@ -54,7 +52,7 @@ export default function BlogPostPage() {
 
     return (
         <div className="min-h-screen bg-[#250000] text-white selection:bg-orange-500 selection:text-white">
-            <Header />
+           
 
             <article className="pt-24 pb-16 px-4 md:px-8 lg:px-16 max-w-4xl mx-auto">
                 <Link
@@ -126,7 +124,6 @@ export default function BlogPostPage() {
                 </div>
             </article>
 
-            <Footer />
         </div>
     );
 }

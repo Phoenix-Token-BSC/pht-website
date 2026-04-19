@@ -17,12 +17,12 @@ const Header: React.FC = () => {
 
   const navItems: NavItem[] = [
     { label: 'About', href: '#about' },
-    { label: 'Partners', href: '#partners' },
-    { label: 'Tokenomics', href: '#tokenomics' },
+    { label: 'Partners', href: '/partners' },
+    { label: 'Tokenomics', href: '/tokenomics' },
     { label: 'DogeMOB', href: '/', isLogo: true },
-    { label: 'Products', href: '#products' },
+    { label: 'Products', href: '/products' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Roadmap', href: '#roadmap' },
+    { label: 'Roadmap', href: '/roadmap' },
     { label: 'Buy Now', href: 'https://pancakeswap.finance/swap?outputCurrency=0x885c99a787BE6b41cbf964174C771A9f7ec48e04' },
   ];
 

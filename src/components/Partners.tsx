@@ -43,13 +43,25 @@ export const DivOrigami = () => {
             <Image src="/images/token-logos/twc.jpg" alt="tiwi ecosystem" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
           <LogoItem key={8} className="bg-black text-neutral-900">
-            <Image src="/images/token-logos/bengcat.webp" alt="tiwi ecosystem" width={300} height={300} className="w-full h-full" />
+            <Image src="/images/token-logos/bengcat.webp" alt="Bengal Cat" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
           <LogoItem key={9} className="bg-black text-neutral-900">
-            <Image src="/images/luminous-partner.jpg" alt="tiwi ecosystem" width={300} height={300} className="w-full h-full" />
+            <Image src="/images/luminous-partner.jpg" alt="Luminous AI" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
           <LogoItem key={10} className="bg-black text-neutral-900">
-            <Image src="/images/zuba-partner.png" alt="tiwi ecosystem" width={300} height={300} className="w-full h-full" />
+            <Image src="/images/zuba-partner.png" alt="ZUBA token" width={300} height={300} className="w-full h-full" />
+          </LogoItem>,
+          <LogoItem key={11} className="bg-black text-neutral-900">
+            <Image src="/images/catcake-logo.jpeg" alt="Cat Cake" width={300} height={300} className="w-full h-full" />
+          </LogoItem>,
+          <LogoItem key={12} className="bg-black text-neutral-900">
+            <Image src="/images/pcat-logo.jpeg" alt="Phenomenal Cat" width={300} height={300} className="w-full h-full" />
+          </LogoItem>,
+          <LogoItem key={13} className="bg-black text-neutral-900">
+            <Image src="/images/mars-logo.png" alt="Matara Token" width={300} height={300} className="w-full h-full" />
+          </LogoItem>,
+          <LogoItem key={14} className="bg-black text-neutral-900">
+            <Image src="/images/sidechick-logo.jpeg" alt="Side Chick" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
         ]}
       />

@@ -3,6 +3,8 @@ import { Space_Grotesk, Orbitron, Fuzzy_Bubbles } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "@/context/AuthContext";
+import Header from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -24,8 +26,8 @@ const fuzzyBubbles = Fuzzy_Bubbles({
 
 
 export const metadata: Metadata = {
-  title: "Phoenix Token - THE ORDINARY MAN'S TOKEN",
-  description: "The one token meant for anyone and everyone. Community of AI Front-Runners, Meme Culture amd Empowering Individuals and Community through Charity",
+  title: "Phoenix Token - THE ORDINARY MAN'S TOKEN | FIRST TRUE AI MEME TOKEN | CHARITY & LOVE",
+  description: "Phoenix Token was born from the idea that crypto should belong to everyone, not just whales and insiders. We rise from the ashes stronger every time. We combine unbreakable community resilience, meaningful charity work, and relentless product development to create something different: THE ORDINARY MAN'S TOKEN",
 };
 
 export default function RootLayout({
@@ -38,10 +40,12 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${orbitron.variable} ${fuzzyBubbles.variable} antialiased`}
       >
+        <Header />
         <AuthProvider>
           <Toaster position="top-right" />
           {children}
         </AuthProvider>
+        <Footer />
       </body>
     </html>
   );

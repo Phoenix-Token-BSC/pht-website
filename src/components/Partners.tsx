@@ -63,6 +63,9 @@ export const DivOrigami = () => {
           <LogoItem key={14} className="bg-black text-neutral-900">
             <Image src="/images/sidechick-logo.jpeg" alt="Side Chick" width={300} height={300} className="w-full h-full" />
           </LogoItem>,
+           <LogoItem key={15} className="bg-black text-neutral-900">
+            <Image src="/images/fwc-logo.jpeg" alt="FIFA WORLD CUP" width={300} height={300} className="w-full h-full" />
+          </LogoItem>,
         ]}
       />
     </section>

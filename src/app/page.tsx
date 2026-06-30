@@ -127,43 +127,45 @@ const productSlides: ProductSlide[] = [
 const roadmapPhases: RoadmapPhase[] = [
   {
     number: "01",
-    quarter: "Q1 2025",
+    quarter: "Q1 2026",
     side: "left",
     items: [
-      "Meme & Thread Contests",
-      "Phoenix Tracker Launch",
-      "New partnerships with other memes",
-      "Resuregence Foundation website release",
+      "CoinGecko Listing",
+      "Firescreener V2.0 Release",
+      "Key partnerships",
+      "Charity Outreach",
     ],
   },
   {
     number: "02",
-    quarter: "Q2 2025",
+    quarter: "Q2 2026",
     side: "right",
     items: [
-      "FireScreener Beta Release",
-      "Charity Aids",
+      "Pyronix Core testing",
+      "Charity Outreach",
       "Events Sponsorships",
-      "More partnerships",
+      "Firescreener V2.1 Release",
+      "Pyronix Core Release",
     ],
   },
   {
     number: "03",
-    quarter: "Q3 2025",
+    quarter: "Q3 2026",
     side: "left",
     items: [
-      "Listing on CoinGecko",
-      "More Events Sponsorship",
-      "Charity Aids",
-      "FireScreener v1 Release",
+      "Phoenix Swap Beta Development",
+      "Charity Outreach",
+      "FireScreener Mobile App Beta Development",
+      "FireScreener V2.2 Update",
+      "Phoenix Swap Release",
     ],
   },
   {
     number: "04",
-    quarter: "Q4 2025",
+    quarter: "Q4 2026",
     side: "right",
     items: [
-      "FireScreener v4 Release",
+      "FireScreener v4 & Mobile App Beta Release",
       "Partnerships with local companies",
       "Onboarding of charity organizations",
       "Agent Pyronix Beta Release",
@@ -707,11 +709,7 @@ export default function Home() {
                       >
                         <div className="bg-gradient-to-br from-neutral-900/80 to-black/80 backdrop-blur-xl border border-orange-500/30 rounded-2xl p-6 md:p-8 shadow-2xl hover:shadow-orange-500/20 transition-all duration-500 hover:scale-105 group min-h-[200px]">
                           <div className="flex items-center mb-4">
-                            <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mr-4 group-hover:rotate-12 transition-transform duration-300">
-                              <span className="text-white font-bold text-xl">
-                                {phase.number}
-                              </span>
-                            </div>
+                           
                             <h3 className="text-xl md:text-2xl font-bold text-orange-400">
                               {phase.quarter}
                             </h3>

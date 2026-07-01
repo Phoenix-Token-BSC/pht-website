@@ -145,6 +145,7 @@ const roadmapPhases: RoadmapPhase[] = [
       "Charity Outreach ✅",
       "Events Sponsorships ✅",
       "Firescreener V2.1 Release ✅",
+      "CEX Listing (Biconomy) ✅",
       "Pyronix Core Release",
     ],
   },
